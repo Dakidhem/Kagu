@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import {
   StyledFormWrapper,
   StyledForm,
   StyledInput,
   StyledButton,
   StyledError,
+  Notificationvert,
+  Notificationrouge,
 } from "../../GlobalStyles.js";
 
 const initalState = {
@@ -15,6 +18,8 @@ const initalState = {
 export const LogIn = () => {
   const [state, setState] = useState(initalState);
   const [error, setError] = useState("");
+  const [Notiv, setNotiv] = useState("");
+  const [Notir, setNotir] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,10 +38,13 @@ export const LogIn = () => {
         state
       )
       .then((response) => {
-        setError("User Logged in succesfully");
+        setNotir("");
+        setNotiv("User Logged in succesfully");
+        console.log(Notiv);
       })
       .catch((erreur) => {
-        setError(erreur.response.data.message);
+        setNotiv("");
+        setNotir(erreur.response.data.message);
       });
   };
 
@@ -75,6 +83,16 @@ export const LogIn = () => {
           <StyledButton type="submit">Login{console.log(state)}</StyledButton>
         </StyledForm>
       </StyledFormWrapper>
+      {Notir && (
+        <Notificationrouge>
+          <span>{Notir}</span>
+        </Notificationrouge>
+      )}
+      {Notiv && (
+        <Notificationvert>
+          <span>{Notiv}</span>
+        </Notificationvert>
+      )}
     </div>
   );
 };

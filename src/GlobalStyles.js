@@ -38,7 +38,7 @@ export const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   padding: 0 20px;
 `;
 
@@ -86,4 +86,18 @@ export const StyledError = styled.div`
   font-weight: 800;
   margin: 0 0 40px 0;
 `;
+export const notification = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  margin: 0 0 40px 0;
+`;
+export const Notificationvert = styled(notification)`
+  color: #00ff80;
+`;
+export const Notificationrouge = styled(notification)`
+  color: #ff5050;
+`;
+
 export default GlobalStyle;

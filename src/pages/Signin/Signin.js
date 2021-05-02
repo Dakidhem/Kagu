@@ -6,6 +6,8 @@ import {
   StyledInput,
   StyledButton,
   StyledError,
+  Notificationvert,
+  Notificationrouge,
 } from "../../GlobalStyles.js";
 
 const initalState = {
@@ -19,6 +21,8 @@ const initalState = {
 export const SignIn = () => {
   const [state, setState] = useState(initalState);
   const [error, setError] = useState("");
+  const [Notiv, setNotiv] = useState("");
+  const [Notir, setNotir] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,12 +42,12 @@ export const SignIn = () => {
         state
       )
       .then((response) => {
-        setError(response.data.message);
-        console.log(error);
+        setNotir("");
+        setNotiv(response.data.message);
       })
       .catch((erreur) => {
-        setError(erreur.response.data.message);
-        console.log(error);
+        setNotiv("");
+        setNotir(erreur.response.data.message);
       });
   };
 
@@ -104,6 +108,16 @@ export const SignIn = () => {
           </StyledButton>
         </StyledForm>
       </StyledFormWrapper>
+      {Notir && (
+        <Notificationrouge>
+          <span>{Notir}</span>
+        </Notificationrouge>
+      )}
+      {Notiv && (
+        <Notificationvert>
+          <span>{Notiv}</span>
+        </Notificationvert>
+      )}
     </div>
   );
 };
