@@ -1,25 +1,108 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Nav,
   NavbarContainer,
   NavLogo,
-  NavIcon,
   BtnSignin,
   BtnLogin,
   Buttons,
+  NavMenu,
+  NavItem,
+  NavLinks,
+  NavIcon,
+  NavIcons,
+  Form,
+  ButtonR,
+  Input,
+  NavIconLink,
 } from "./NavbarElement";
-import Logo from "../../assets/g853.png";
+import { BiUser, BiSearch } from "react-icons/bi";
+import { FiSettings } from "react-icons/fi";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import Logo from "../../assets/Images/Logo.png";
 export const Navbar = () => {
+  const [input, setInput] = useState("");
+  const [barOpened, setBarOpened] = useState(true);
+  const formRef = useRef();
+  const inputFocus = useRef();
+  const onFormSubmit = (e) => {
+    // When form submited, clear input, close the searchbar and do something with input
+    e.preventDefault();
+    setInput("");
+    setBarOpened(true);
+    // After form submit, do what you want with the input value
+    console.log(`Form was submited with input: ${input}`);
+  };
   return (
     <Nav>
       <NavbarContainer>
         <NavLogo to="/">
           <NavIcon src={Logo} />
         </NavLogo>
-        <Buttons>
-          <BtnSignin to="/Signin">Sign In</BtnSignin>
-          <BtnLogin to="/Login">Log In</BtnLogin>
-        </Buttons>
+        <NavMenu>
+          <NavItem>
+            <NavLinks to="/">Acceuil</NavLinks>
+          </NavItem>
+          <NavItem>
+            <NavLinks to="/Catalogue">Produits</NavLinks>
+          </NavItem>
+          <NavItem>
+            <NavLinks>Contactez-nous</NavLinks>
+          </NavItem>
+        </NavMenu>
+        <Form
+          barOpened={barOpened}
+          onClick={() => {
+            // When form clicked, set state of baropened to true and focus the input
+            setBarOpened(true);
+            inputFocus.current.focus();
+          }}
+          // on focus open search bar
+          onFocus={() => {
+            setBarOpened(true);
+            inputFocus.current.focus();
+          }}
+          // on blur close search bar
+          onBlur={() => {
+            setBarOpened(true);
+          }}
+          // On submit, call the onFormSubmit function
+          onSubmit={onFormSubmit}
+          ref={formRef}
+        >
+          <ButtonR type="submit" barOpened={barOpened}>
+            <BiSearch />
+          </ButtonR>
+          <Input
+            onChange={(e) => setInput(e.target.value)}
+            ref={inputFocus}
+            value={input}
+            barOpened={barOpened}
+            placeholder="Rechercher un produit..."
+          />
+        </Form>
+        <NavIcons>
+          <NavItem>
+            <NavIconLink to="/Login">
+              <BiUser size="30" />
+            </NavIconLink>
+          </NavItem>
+          <NavItem>
+            <NavIconLink>
+              <AiOutlineHeart size="30" />
+            </NavIconLink>
+          </NavItem>
+          <NavItem>
+            <NavIconLink>
+              <AiOutlineShoppingCart size="30" />
+            </NavIconLink>
+          </NavItem>
+          <NavItem>
+            <NavIconLink>
+              <FiSettings size="30" />
+            </NavIconLink>
+          </NavItem>
+        </NavIcons>
       </NavbarContainer>
     </Nav>
   );

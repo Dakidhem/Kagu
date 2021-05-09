@@ -1,0 +1,11 @@
+.HeroSlides {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-template-columns: 12fr;
+
+  @media screen and (max-width: 991px) {
+    width: 100vw;
+  }
+}

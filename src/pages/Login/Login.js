@@ -7,9 +7,21 @@ import {
   StyledInput,
   StyledButton,
   StyledError,
+  Styledh1,
   Notificationvert,
   Notificationrouge,
+  StyledFormBlue,
+  StyledFormContainer,
+  StyledKagu,
+  Styledp,
+  Styledps,
+  StyledMeuble,
+  Styleda,
+  StyledAddiction,
+  SessionInput,
 } from "../../GlobalStyles.js";
+import Meuble from "../../assets/Images/meuble4.png";
+import KaguBlue from "../../assets/Images/KaguBlue.png";
 
 const initalState = {
   email: "",
@@ -28,7 +40,15 @@ export const LogIn = () => {
 
     for (let key in state) {
       if (state[key] === "") {
-        setError(`You must provide the ${key}`);
+        if (key === "email") {
+          setError("");
+          setNotir("");
+          setError(`Vous devez saisir votre Email`);
+        } else if (key === "password") {
+          setError("");
+          setNotir("");
+          setError(`Vous devez saisir votre mot de passe`);
+        }
         return;
       }
     }
@@ -38,11 +58,13 @@ export const LogIn = () => {
         state
       )
       .then((response) => {
+        setError("");
         setNotir("");
-        setNotiv("User Logged in succesfully");
+        setNotiv("L'utilisateur s'est connecté avec succès");
         console.log(Notiv);
       })
       .catch((erreur) => {
+        setError("");
         setNotiv("");
         setNotir(erreur.response.data.message);
       });
@@ -57,42 +79,60 @@ export const LogIn = () => {
   return (
     <div>
       <StyledFormWrapper>
-        <StyledForm onSubmit={handleSubmit}>
-          <h1>Log In</h1>
-          <br />
+        <StyledFormContainer>
+          <StyledFormBlue>
+            <StyledMeuble src={Meuble} />
+          </StyledFormBlue>
+          <StyledForm onSubmit={handleSubmit}>
+            <center>
+              <StyledKagu src={KaguBlue} />
+            </center>
+            <Styledh1>Bienvenue !</Styledh1>
+            <br />
 
-          <label htmlFor="email">Email</label>
-          <StyledInput
-            type="email"
-            name="email"
-            value={state.email}
-            onChange={handleInput}
-          />
-          <label htmlFor="password">Password</label>
-          <StyledInput
-            type="password"
-            name="password"
-            value={state.password}
-            onChange={handleInput}
-          />
-          {error && (
-            <StyledError>
-              <p>{error}</p>
-            </StyledError>
-          )}
-          <StyledButton type="submit">Login{console.log(state)}</StyledButton>
-        </StyledForm>
+            <label htmlFor="email"></label>
+            <StyledInput
+              type="email"
+              name="email"
+              value={state.email}
+              onChange={handleInput}
+              placeholder="Email..."
+            />
+            <label htmlFor="password"></label>
+            <StyledInput
+              type="password"
+              name="password"
+              value={state.password}
+              onChange={handleInput}
+              placeholder="Mot de passe..."
+            />
+            {error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            )}
+            {Notir && (
+              <Notificationrouge>
+                <span>{Notir}</span>
+              </Notificationrouge>
+            )}
+            {Notiv && (
+              <Notificationvert>
+                <span>{Notiv}</span>
+              </Notificationvert>
+            )}
+            <SessionInput type="checkbox" name="session"></SessionInput>
+            <Styledps>Sauvgarder la session</Styledps>
+            <StyledButton type="submit">
+              Connectez-Vous{console.log(state)}
+            </StyledButton>
+            <StyledAddiction>
+              <Styledp>Vous n'avez pas de compte?</Styledp>
+              <Styleda to="/SignUp">Inscrivez-vous</Styleda>
+            </StyledAddiction>
+          </StyledForm>
+        </StyledFormContainer>
       </StyledFormWrapper>
-      {Notir && (
-        <Notificationrouge>
-          <span>{Notir}</span>
-        </Notificationrouge>
-      )}
-      {Notiv && (
-        <Notificationvert>
-          <span>{Notiv}</span>
-        </Notificationvert>
-      )}
     </div>
   );
 };
