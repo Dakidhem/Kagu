@@ -82,9 +82,7 @@ export const Styledp = styled.p`
   font-weight: 900;
   margin-top: 15px;
 `;
-export const Styledps = styled(Styledp)`
-  margin-top: 15px;
-`;
+export const Styledps = styled(Styledp)``;
 export const Styleda = styled(Link)`
   font-size: 0.8rem;
   color: #3b84bb;
@@ -99,6 +97,7 @@ export const StyledMeuble = styled.img`
 export const SessionInput = styled.input`
   display: inline;
   margin: 10px;
+  margin-top: 0;
 `;
 
 export const StyledAddiction = styled.div`
@@ -121,6 +120,11 @@ export const StyledFormContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 991px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export const StyledFormBlue = styled.div`
   background-color: #d3e9f9;

@@ -15,7 +15,7 @@ export const ImgItem = styled.img`
   grid-column-start: 3;
   grid-column-end: 4;
   @media screen and (max-width: 991px) {
-    max-width: 150px;
+    max-width: 300px;
   }
 `;
 export const ContentItem = styled.div`

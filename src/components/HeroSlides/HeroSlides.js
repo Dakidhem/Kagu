@@ -4,7 +4,6 @@ import meuble1 from "../../assets/Images/meuble1.png";
 import meuble2 from "../../assets/Images/meuble2.png";
 import meuble3 from "../../assets/Images/meuble3.png";
 import meuble4 from "../../assets/Images/meuble4.png";
-import { BtnSignin, BtnLogin, Buttons } from "../Navbar/NavbarElement.js";
 import {
   Item,
   ImgItem,

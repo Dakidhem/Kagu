@@ -45,6 +45,7 @@ export const SignIn = () => {
           setNotiv("");
           setNotir("");
           setError(`Vous devez saisir votre nom`);
+          sessionStorage.setItem("name", "mehdi");
         } else if (key === "prenom") {
           setNotiv("");
           setNotir("");
@@ -82,7 +83,7 @@ export const SignIn = () => {
       setError("Utiliser un mot de passe qui contient au moins 8 caractère");
       return;
     }
-    if (state.password != confirm) {
+    if (state.password !== confirm) {
       setNotiv("");
       setNotir("");
       setError(

@@ -32,7 +32,13 @@ export const LogIn = () => {
   const [error, setError] = useState("");
   const [Notiv, setNotiv] = useState("");
   const [Notir, setNotir] = useState("");
+  const [Checked, setChecked] = useState(false);
 
+  const handleChecked = (e) => {
+    console.log(Checked);
+    setChecked(!Checked);
+    console.log(Checked);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitted!");
@@ -61,7 +67,12 @@ export const LogIn = () => {
         setError("");
         setNotir("");
         setNotiv("L'utilisateur s'est connecté avec succès");
-        console.log(Notiv);
+        if (Checked) {
+          localStorage.setItem("state", JSON.stringify(response.data));
+          for (let key in response.data) {
+            localStorage.setItem(key, response.data[key]);
+          }
+        }
       })
       .catch((erreur) => {
         setError("");
@@ -121,7 +132,12 @@ export const LogIn = () => {
                 <span>{Notiv}</span>
               </Notificationvert>
             )}
-            <SessionInput type="checkbox" name="session"></SessionInput>
+            <SessionInput
+              type="checkbox"
+              name="session"
+              defaultChecked={Checked}
+              onChange={handleChecked}
+            ></SessionInput>
             <Styledps>Sauvgarder la session</Styledps>
             <StyledButton type="submit">
               Connectez-Vous{console.log(state)}
