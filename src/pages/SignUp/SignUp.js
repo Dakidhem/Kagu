@@ -19,6 +19,7 @@ import {
 } from "../../GlobalStyles.js";
 import KaguBlue from "../../assets/Images/KaguBlue.png";
 import Meuble from "../../assets/Images/meuble1.png";
+import { useHistory } from "react-router";
 const initalState = {
   nom: "",
   prenom: "",
@@ -33,6 +34,7 @@ export const SignIn = () => {
   const [error, setError] = useState("");
   const [Notiv, setNotiv] = useState("");
   const [Notir, setNotir] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,6 +103,9 @@ export const SignIn = () => {
         setError("");
         setNotir("");
         setNotiv(response.data.message);
+        setTimeout(() => {
+          history.push("/Profile");
+        }, 3000);
       })
       .catch((erreur) => {
         setError("");

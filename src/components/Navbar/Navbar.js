@@ -30,6 +30,10 @@ export const Navbar = () => {
     // After form submit, do what you want with the input value
     console.log(`Form was submited with input: ${input}`);
   };
+  const handleDisconnect = () => {
+    localStorage.removeItem("state");
+    window.location.reload();
+  };
   return (
     <Nav>
       <NavbarContainer>
@@ -44,7 +48,7 @@ export const Navbar = () => {
             <NavLinks to="/Catalogue">Produits</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks>Contactez-nous</NavLinks>
+            <NavLinks to="/">Contactez-nous</NavLinks>
           </NavItem>
         </NavMenu>
         <Form
@@ -80,7 +84,7 @@ export const Navbar = () => {
         </Form>
         <NavIcons>
           <NavItem>
-            <NavIconLink to="/Login">
+            <NavIconLink to="/Profile">
               <BiUser size="30" />
             </NavIconLink>
           </NavItem>
@@ -95,7 +99,7 @@ export const Navbar = () => {
             </NavIconLink>
           </NavItem>
           <NavItem>
-            <NavIconLink>
+            <NavIconLink to="/" onClick={handleDisconnect}>
               <FiSettings size="30" />
             </NavIconLink>
           </NavItem>

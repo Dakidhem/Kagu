@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-
+import { Redirect } from "react-router-dom";
 import {
   StyledFormWrapper,
   StyledForm,
@@ -27,17 +28,16 @@ const initalState = {
   email: "",
   password: "",
 };
-export const LogIn = () => {
+export const LogIn = ({ authorized, setAuthorized }) => {
   const [state, setState] = useState(initalState);
   const [error, setError] = useState("");
   const [Notiv, setNotiv] = useState("");
   const [Notir, setNotir] = useState("");
   const [Checked, setChecked] = useState(false);
+  let history = useHistory();
 
   const handleChecked = (e) => {
-    console.log(Checked);
     setChecked(!Checked);
-    console.log(Checked);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,11 +73,16 @@ export const LogIn = () => {
             localStorage.setItem(key, response.data[key]);
           }
         }
+
+        setTimeout(() => {
+          setAuthorized(true);
+          history.push("/Profile");
+        }, 3000);
       })
       .catch((erreur) => {
         setError("");
         setNotiv("");
-        setNotir(erreur.response.data.message);
+        console.log(erreur.response.data.message);
       });
   };
 
