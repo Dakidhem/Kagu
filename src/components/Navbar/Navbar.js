@@ -17,7 +17,7 @@ import { BiUser, BiSearch } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import Logo from "../../assets/Images/Logo.png";
-export const Navbar = () => {
+export const Navbar = ({ setAuthorized }) => {
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(true);
   const formRef = useRef();
@@ -32,6 +32,14 @@ export const Navbar = () => {
   };
   const handleDisconnect = () => {
     localStorage.removeItem("state");
+    localStorage.removeItem("nom");
+    localStorage.removeItem("prenom");
+    localStorage.removeItem("id");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("roles");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+    setAuthorized(false);
     window.location.reload();
   };
   return (
@@ -42,7 +50,7 @@ export const Navbar = () => {
         </NavLogo>
         <NavMenu>
           <NavItem>
-            <NavLinks to="/">Acceuil</NavLinks>
+            <NavLinks to="/">Accueil</NavLinks>
           </NavItem>
           <NavItem>
             <NavLinks to="/Catalogue">Produits</NavLinks>
@@ -84,7 +92,7 @@ export const Navbar = () => {
         </Form>
         <NavIcons>
           <NavItem>
-            <NavIconLink to="/Profile">
+            <NavIconLink to="/VerifyRole">
               <BiUser size="30" />
             </NavIconLink>
           </NavItem>

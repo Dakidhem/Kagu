@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import {
   StyledFormWrapper,
   StyledForm,
@@ -28,7 +27,7 @@ const initalState = {
   email: "",
   password: "",
 };
-export const LogIn = ({ authorized, setAuthorized }) => {
+export const LogIn = ({ authorized, setAuthorized, setRole }) => {
   const [state, setState] = useState(initalState);
   const [error, setError] = useState("");
   const [Notiv, setNotiv] = useState("");
@@ -75,14 +74,29 @@ export const LogIn = ({ authorized, setAuthorized }) => {
         }
 
         setTimeout(() => {
+          const role = localStorage.getItem("roles");
           setAuthorized(true);
-          history.push("/Profile");
+          if (role === "ROLE_USER") {
+            setRole("ROLE_USER");
+            history.push("/VerifyRole");
+          } else if (role === "ROLE_ADMIN") {
+            setRole("ROLE_ADMIN");
+            history.push("/VerifyRole");
+          } else if (role === "ROLE_SUPER-ADMIN") {
+            setRole("ROLE_SUPER-ADMIN");
+            history.push("/VerifyRole");
+          }
         }, 3000);
       })
       .catch((erreur) => {
         setError("");
         setNotiv("");
-        console.log(erreur.response.data.message);
+        setNotir(erreur.response.data.message);
+      });
+    axios
+      .get("https://productsapi1.herokuapp.com/api/produits")
+      .then((response) => {
+        console.log(response.data);
       });
   };
 

@@ -11,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
         font-family:${Montserrat};
     }
     html,body {
-    height:100%;
     overflow-x: hidden; //horizontal
 }
 `;
@@ -180,5 +179,6 @@ export const Notificationvert = styled(StyledError)`
 export const Notificationrouge = styled(StyledError)`
   color: #ff5050;
 `;
+//Profile and dashboard styling
 
 export default GlobalStyle;
