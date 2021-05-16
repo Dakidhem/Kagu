@@ -151,6 +151,10 @@ export const Styledh1 = styled.h1`
   font-weight: 900;
   font-size: 3rem;
 `;
+export const Styledh3 = styled.h3`
+  ${Styledh1}
+  font-size:1rem;
+`;
 export const StyledKagu = styled.img`
   margin-bottom: 40px;
 `;

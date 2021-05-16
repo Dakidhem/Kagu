@@ -7,6 +7,9 @@ import {
   StyledButton,
   Styledh1,
   StyledFormContainer,
+  StyledError,
+  Notificationvert,
+  Notificationrouge,
   StyledArea,
 } from "./AjouterProduitElements.js";
 const initalState = {
@@ -19,13 +22,24 @@ const initalState = {
 };
 const AjouterProduit = () => {
   const [state, setState] = useState(initalState);
+  const [error, setError] = useState("");
+  const [Notiv, setNotiv] = useState("");
+  const [Notir, setNotir] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("https://productsapi1.herokuapp.com/api/produits", state)
-      .then((response) => {})
-      .catch((error) => {});
+      .then((response) => {
+        setError("");
+        setNotir("");
+        setNotiv("Le produit a été ajouté avec succès");
+      })
+      .catch((error) => {
+        setError("");
+        setNotiv("");
+        setNotir(error.response.data.message);
+      });
   };
 
   const handleInput = (e) => {
@@ -88,7 +102,21 @@ const AjouterProduit = () => {
               onChange={handleInput}
               placeholder="Url de la photo..."
             />
-
+            {error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            )}
+            {Notir && (
+              <Notificationrouge>
+                <span>{Notir}</span>
+              </Notificationrouge>
+            )}
+            {Notiv && (
+              <Notificationvert>
+                <span>{Notiv}</span>
+              </Notificationvert>
+            )}
             <StyledButton type="submit">Enregistrer le produits</StyledButton>
           </StyledForm>
         </StyledFormContainer>

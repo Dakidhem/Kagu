@@ -9,9 +9,11 @@ import {
   TableTd,
   TableLink,
   TableButton,
+  BtnAjouterP,
 } from "./GstockElements.js";
 import { VscCheck, VscClose } from "react-icons/vsc";
 import { MdDelete, MdModeEdit } from "react-icons/md";
+import { RiAddCircleLine } from "react-icons/ri";
 const Gstock = () => {
   const [Products, setProducts] = useState([]);
   const [Compteur, setCompteur] = useState(0);
@@ -43,6 +45,10 @@ const Gstock = () => {
     <div>
       <Wrapper>
         <GStockContainer>
+          <BtnAjouterP to="/GestionProduit/AjouterProduit">
+            <RiAddCircleLine size="48" />
+          </BtnAjouterP>
+          <h3>Ajouter un produit</h3>
           <GStockTable>
             <tr>
               <TableTh>Num Produits</TableTh>

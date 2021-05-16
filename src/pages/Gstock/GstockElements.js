@@ -25,6 +25,7 @@ export const GStockContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
@@ -34,7 +35,7 @@ export const GStockTable = styled.table`
   border-spacing: 80px;
 `;
 export const TableTh = styled.th`
-  padding: 80px;
+  padding: 40px 80px;
   border-bottom: solid 1px #e1e1ea;
 `;
 export const ProductImg = styled.img`
@@ -51,4 +52,8 @@ export const TableButton = styled.button`
   background-color: #fff;
   border: none;
   cursor: pointer;
+`;
+export const BtnAjouterP = styled(Link)`
+  margin: 50px 50px 20px 50px;
+  color: #466277;
 `;

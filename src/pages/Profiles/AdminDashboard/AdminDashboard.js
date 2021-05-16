@@ -6,7 +6,7 @@ import {
   DashboardList,
   DashboardListItem,
   Listp,
-} from "./AdminDashboardElements.js";
+} from "../AdminDashboard/AdminDashboardElements.js";
 import { BiPackage, BiUserCircle } from "react-icons/bi";
 import { FaUserFriends } from "react-icons/fa";
 
@@ -28,13 +28,6 @@ export const AdminDashboard = ({ authorized }) => {
             <Listp>
               Gestion des <br />
               produits
-            </Listp>
-          </DashboardListItem>
-          <DashboardListItem to="/AdminDashboard/GestionUtilisateur">
-            <FaUserFriends size="32" />
-            <Listp>
-              Gestion des <br />
-              utilisateurs
             </Listp>
           </DashboardListItem>
         </DashboardList>

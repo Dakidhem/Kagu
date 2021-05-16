@@ -9,11 +9,16 @@ import {
   Styledh1,
   StyledFormContainer,
   StyledArea,
+  StyledError,
+  Notificationvert,
+  Notificationrouge,
 } from "../AjouterProduit/AjouterProduitElements.js";
 
 const ModifierProduit = () => {
   const { id } = useParams();
-
+  const [error, setError] = useState("");
+  const [Notiv, setNotiv] = useState("");
+  const [Notir, setNotir] = useState("");
   const [CurrentState, setCurrentState] = useState({});
 
   useEffect(() => {
@@ -32,10 +37,14 @@ const ModifierProduit = () => {
         CurrentState
       )
       .then((response) => {
-        console.log(response.data);
+        setError("");
+        setNotir("");
+        setNotiv("Produit modifier avec succès");
       })
       .catch((error) => {
-        console.log(error);
+        setError("");
+        setNotiv("");
+        setNotir(error.response.data.message);
       });
   };
 
@@ -102,6 +111,21 @@ const ModifierProduit = () => {
               placeholder="Url de la photo..."
             />
             <img src={CurrentState.imageurl} width="50px" />
+            {error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            )}
+            {Notir && (
+              <Notificationrouge>
+                <span>{Notir}</span>
+              </Notificationrouge>
+            )}
+            {Notiv && (
+              <Notificationvert>
+                <span>{Notiv}</span>
+              </Notificationvert>
+            )}
             <StyledButton type="submit">
               Enregistrer les modifications
             </StyledButton>

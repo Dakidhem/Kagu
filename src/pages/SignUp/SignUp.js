@@ -47,7 +47,6 @@ export const SignIn = () => {
           setNotiv("");
           setNotir("");
           setError(`Vous devez saisir votre nom`);
-          sessionStorage.setItem("name", "mehdi");
         } else if (key === "prenom") {
           setNotiv("");
           setNotir("");
@@ -104,7 +103,7 @@ export const SignIn = () => {
         setNotir("");
         setNotiv(response.data.message);
         setTimeout(() => {
-          history.push("/Profile");
+          history.push("/LogIn");
         }, 3000);
       })
       .catch((erreur) => {

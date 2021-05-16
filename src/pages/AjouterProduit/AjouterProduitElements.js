@@ -17,7 +17,17 @@ export const StyledFormWrapper = styled.div`
   align-items: center;
   padding: 0 20px;
 `;
-
+export const StyledError = styled.div`
+  color: red;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+`;
+export const Notificationvert = styled(StyledError)`
+  color: #00ff80;
+`;
+export const Notificationrouge = styled(StyledError)`
+  color: #ff5050;
+`;
 export const sharedStyles = css`
   background-color: #ffffff;
   height: 40px;

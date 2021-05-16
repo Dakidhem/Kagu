@@ -18,7 +18,7 @@ import VerifyRole from "./pages/Profiles/VerifyRole.js";
 import MonProfile from "./pages/Profiles/MonProfile/MonProfile.js";
 import AjouterProduit from "./pages/AjouterProduit/AjouterProduit.js";
 import GStock from "./pages/Gstock/Gstock.js";
-import GestionUtilisateur from "./pages/Profiles/MonProfile/MonProfile.js";
+import AjouterAdmin from "./pages/AjouterAdmin/AjouterAdmin.js";
 
 //------------------Pages_Fin------------------
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -55,6 +55,11 @@ function App() {
             component={() => <UserDashboard authorized={authorized} />}
           ></Route>
           <Route
+            path="/UserDashboard/MonProfile"
+            exact
+            component={MonProfile}
+          ></Route>
+          <Route
             path="/AdminDashboard/GestionProduit/AjouterProduit"
             exact
             component={() => <AjouterProduit authorized={authorized} />}
@@ -86,9 +91,24 @@ function App() {
             component={GStock}
           ></Route>
           <Route
-            path="/AdminDashboard/GestionUtilisateur"
+            path="/GestionProduit/AjouterProduit"
             exact
-            component={GestionUtilisateur}
+            component={AjouterProduit}
+          ></Route>
+          <Route
+            path="/SuperAdminDashboard/MonProfile"
+            exact
+            component={MonProfile}
+          ></Route>
+          <Route
+            path="/SuperAdminDashboard/AjouterAdmin"
+            exact
+            component={AjouterAdmin}
+          ></Route>
+          <Route
+            path="/SuperAdminDashboard/GestionProduit"
+            exact
+            component={GStock}
           ></Route>
         </Switch>
       </WelcomeHero>

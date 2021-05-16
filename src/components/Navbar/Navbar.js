@@ -17,11 +17,13 @@ import { BiUser, BiSearch } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import Logo from "../../assets/Images/Logo.png";
+import { useHistory } from "react-router";
 export const Navbar = ({ setAuthorized }) => {
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(true);
   const formRef = useRef();
   const inputFocus = useRef();
+  const history = useHistory();
   const onFormSubmit = (e) => {
     // When form submited, clear input, close the searchbar and do something with input
     e.preventDefault();
@@ -39,8 +41,9 @@ export const Navbar = ({ setAuthorized }) => {
     localStorage.removeItem("roles");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
+    localStorage.removeItem("numtel");
     setAuthorized(false);
-    window.location.reload();
+    history.push("/hello");
   };
   return (
     <Nav>
