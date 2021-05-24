@@ -11,6 +11,7 @@ import {
   Notificationvert,
   Notificationrouge,
   StyledArea,
+  ImgProduct,
 } from "./AjouterProduitElements.js";
 const initalState = {
   nom: "",
@@ -28,6 +29,12 @@ const AjouterProduit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (state.quantite < 1) {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir une quantité supérieure à 0");
+      return;
+    }
     axios
       .post("https://productsapi1.herokuapp.com/api/produits", state)
       .then((response) => {
@@ -92,8 +99,9 @@ const AjouterProduit = () => {
               name="description"
               value={state.description}
               onChange={handleInput}
-              placeholder="description..."
+              placeholder="Description..."
             />
+
             <label htmlFor="imageurl"></label>
             <StyledInput
               type="url"
@@ -102,6 +110,9 @@ const AjouterProduit = () => {
               onChange={handleInput}
               placeholder="Url de la photo..."
             />
+            <center>
+              <ImgProduct src={state.imageurl} />
+            </center>
             {error && (
               <StyledError>
                 <p>{error}</p>

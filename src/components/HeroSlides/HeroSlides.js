@@ -24,7 +24,7 @@ export const HeroSlides = () => {
         showArrows={false}
         swipeable={false}
         infiniteLoop={true}
-        showThumbs={true}
+        showThumbs={false}
         centerSlidePercentage={100}
       >
         <Item>

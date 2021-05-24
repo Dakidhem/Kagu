@@ -67,7 +67,12 @@ export const SessionInput = styled.input`
   margin: 10px;
   margin-top: 0;
 `;
-export const StyledArea = styled.textarea``;
+export const StyledArea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  resize: none;
+`;
+
 export const StyledFormContainer = styled.div`
   width: 100%;
   max-width: 1000px;
@@ -92,10 +97,16 @@ export const StyledInput = styled.input`
   font-size: 1em;
   ${sharedStyles}
 `;
+
+export const ImgProduct = styled.img`
+  width: 75px;
+  height: 75px;
+`;
 export const Styledh1 = styled.h1`
   color: #4b4a4a;
   font-weight: 900;
   font-size: 3rem;
+  text-align: center;
 `;
 
 export const StyledButton = styled.button`

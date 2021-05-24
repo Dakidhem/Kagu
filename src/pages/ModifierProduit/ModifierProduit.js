@@ -110,7 +110,9 @@ const ModifierProduit = () => {
               onChange={handleInput}
               placeholder="Url de la photo..."
             />
-            <img src={CurrentState.imageurl} width="50px" />
+            <center>
+              <img src={CurrentState.imageurl} width="50px" />
+            </center>
             {error && (
               <StyledError>
                 <p>{error}</p>

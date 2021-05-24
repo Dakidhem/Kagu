@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import {
   Nav,
   NavbarContainer,
@@ -19,11 +20,21 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import Logo from "../../assets/Images/Logo.png";
 import { useHistory } from "react-router";
 export const Navbar = ({ setAuthorized }) => {
+  const [Products, setProducts] = useState([]);
+  const [UpdatedProducts, setUpdatedProducts] = useState([]);
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(true);
   const formRef = useRef();
   const inputFocus = useRef();
   const history = useHistory();
+  useEffect(() => {
+    axios
+      .get("https://productsapi1.herokuapp.com/api/produits")
+      .then((Response) => {
+        setProducts(Response.data);
+      })
+      .catch((error) => {});
+  });
   const onFormSubmit = (e) => {
     // When form submited, clear input, close the searchbar and do something with input
     e.preventDefault();
@@ -44,6 +55,22 @@ export const Navbar = ({ setAuthorized }) => {
     localStorage.removeItem("numtel");
     setAuthorized(false);
     history.push("/hello");
+  };
+  const HandleSearch = (e) => {
+    setInput(e.target.value);
+    if (e.target.value === "") {
+      setUpdatedProducts(Products);
+    } else updateProducts(e.target.value);
+  };
+  const updateProducts = (value) => {
+    setUpdatedProducts([]);
+
+    Products.map((product) => {
+      if (product.nom.includes(value)) {
+        setUpdatedProducts((prev) => [...prev, product]);
+      }
+    });
+    console.log(UpdatedProducts);
   };
   return (
     <Nav>
@@ -86,7 +113,7 @@ export const Navbar = ({ setAuthorized }) => {
             <BiSearch />
           </ButtonR>
           <Input
-            onChange={(e) => setInput(e.target.value)}
+            onChange={HandleSearch}
             ref={inputFocus}
             value={input}
             barOpened={barOpened}
