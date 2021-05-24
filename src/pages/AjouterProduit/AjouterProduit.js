@@ -128,7 +128,7 @@ const AjouterProduit = () => {
                 <span>{Notiv}</span>
               </Notificationvert>
             )}
-            <StyledButton type="submit">Enregistrer le produits</StyledButton>
+            <StyledButton type="submit">Enregistrer le produit</StyledButton>
           </StyledForm>
         </StyledFormContainer>
       </StyledFormWrapper>

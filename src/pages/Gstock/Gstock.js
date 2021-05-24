@@ -20,7 +20,7 @@ import { BiSearch } from "react-icons/bi";
 import { RiAddCircleLine } from "react-icons/ri";
 const Gstock = () => {
   const [Products, setProducts] = useState([]);
-  const [Compteur, setCompteur] = useState(0);
+  let Compteur = 0;
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
   const formRef = useRef();
@@ -54,6 +54,10 @@ const Gstock = () => {
         console.log(response.data);
       })
       .catch();
+  };
+  const DisplayCompteur = () => {
+    Compteur++;
+    return Compteur;
   };
   return (
     <div>
@@ -118,7 +122,7 @@ const Gstock = () => {
             }).map((product, key) => {
               return (
                 <tr id={product.id} key={key}>
-                  <TableTd>{Compteur}</TableTd>
+                  <TableTd>{DisplayCompteur()}</TableTd>
                   <TableTd>{product.nom}</TableTd>
                   <TableTd>
                     <ProductImg src={product.imageurl} />

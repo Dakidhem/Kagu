@@ -95,7 +95,7 @@ export const Catalogue = () => {
                         <span class="p-company">{product.type}</span>
                       </div>
                       <div class="a-size">
-                        <span class="size">
+                        <span class="size" maxlength="10">
                           Desciption :{product.description}
                         </span>
                       </div>

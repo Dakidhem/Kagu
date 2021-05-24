@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 `;
 export const GStockContainer = styled.div`
   width: 100%;
-  max-width: 1800px;
+  max-width: 95vw;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -32,11 +32,14 @@ export const GStockContainer = styled.div`
 `;
 export const GStockTable = styled.table`
   border-collapse: collapse;
-  border-spacing: 80px;
+  border-spacing: 60px;
 `;
 export const TableTh = styled.th`
   padding: 40px 80px;
   border-bottom: solid 1px #e1e1ea;
+  @media screen and (max-width: 1600px) {
+    padding: 20px 40px;
+  }
 `;
 export const ProductImg = styled.img`
   width: 50px;
