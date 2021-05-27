@@ -19,7 +19,7 @@ export const Catalogue = () => {
 
   useEffect(() => {
     axios
-      .get("https://productsapi1.herokuapp.com/api/produits")
+      .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((Response) => {
         setProducts(Response.data);
       })

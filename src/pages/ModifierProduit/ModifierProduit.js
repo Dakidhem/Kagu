@@ -23,7 +23,7 @@ const ModifierProduit = () => {
 
   useEffect(() => {
     axios
-      .get(`https://productsapi1.herokuapp.com/api/produits/${id}`)
+      .get(`https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`)
       .then((response) => {
         setCurrentState(response.data);
       });
@@ -33,7 +33,7 @@ const ModifierProduit = () => {
     e.preventDefault();
     axios
       .put(
-        `https://productsapi1.herokuapp.com/api/produits/${id}`,
+        `https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`,
         CurrentState
       )
       .then((response) => {

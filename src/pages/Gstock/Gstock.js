@@ -36,7 +36,7 @@ const Gstock = () => {
   };
   useEffect(() => {
     axios
-      .get("https://productsapi1.herokuapp.com/api/produits")
+      .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((Response) => {
         setProducts(Response.data);
       })
@@ -49,7 +49,7 @@ const Gstock = () => {
   };
   const DeleteHandler = (id) => {
     axios
-      .delete(`https://productsapi1.herokuapp.com/api/produits/${id}`)
+      .delete(`https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`)
       .then((response) => {
         console.log(response.data);
       })

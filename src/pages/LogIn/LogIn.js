@@ -94,7 +94,7 @@ export const LogIn = ({ authorized, setAuthorized, setRole }) => {
         setNotir(erreur.response.data.message);
       });
     axios
-      .get("https://productsapi1.herokuapp.com/api/produits")
+      .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((response) => {
         console.log(response.data);
       });

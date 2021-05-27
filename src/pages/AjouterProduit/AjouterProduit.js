@@ -36,7 +36,7 @@ const AjouterProduit = () => {
       return;
     }
     axios
-      .post("https://productsapi1.herokuapp.com/api/produits", state)
+      .post("https://whispering-bastion-00988.herokuapp.com/api/produits", state)
       .then((response) => {
         setError("");
         setNotir("");
