@@ -49,6 +49,11 @@ const Gstock = () => {
   };
   const DeleteHandler = (id) => {
     axios
+
+      .delete(
+        `https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`
+      )
+
       .delete(
         `https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`
       )
