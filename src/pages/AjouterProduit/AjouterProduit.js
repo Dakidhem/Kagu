@@ -23,10 +23,24 @@ const initalState = {
 };
 const AjouterProduit = () => {
   const [state, setState] = useState(initalState);
+  const [nomtype, setnomtype] = useState();
   const [error, setError] = useState("");
   const [Notiv, setNotiv] = useState("");
   const [Notir, setNotir] = useState("");
 
+  const NomTypeVerif = async (nom, type) => {
+    try {
+      const resp = await axios.get(
+        `https://whispering-bastion-00988.herokuapp.com/api/produits/NomType?nom=${nom}&type=${type}`,
+        state
+      );
+      return resp.data;
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+      return err.data;
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.quantite < 1) {
@@ -35,18 +49,30 @@ const AjouterProduit = () => {
       setNotir("Vous devez saisir une quantité supérieure à 0");
       return;
     }
-    axios
-      .post("https://productsapi1.herokuapp.com/api/produits", state)
-      .then((response) => {
-        setError("");
-        setNotir("");
-        setNotiv("Le produit a été ajouté avec succès");
-      })
-      .catch((error) => {
+
+    NomTypeVerif(state.nom, state.type).then((x) => {
+      if (x.length === 0) {
+        axios
+          .post(
+            "https://whispering-bastion-00988.herokuapp.com/api/produits",
+            state
+          )
+          .then((response) => {
+            setError("");
+            setNotir("");
+            setNotiv("Le produit a été ajouté avec succès");
+          })
+          .catch((error) => {
+            setError("");
+            setNotiv("");
+            setNotir(error.response.data.message);
+          });
+      } else {
         setError("");
         setNotiv("");
-        setNotir(error.response.data.message);
-      });
+        setNotir("le produit éxiste déjà");
+      }
+    });
   };
 
   const handleInput = (e) => {
