@@ -39,6 +39,8 @@ const Gstock = () => {
       .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((Response) => {
         setProducts(Response.data.reverse());
+        console.log(Products);
+        console.log(typeof Products);
       })
       .catch((error) => {});
   }, [Products]);

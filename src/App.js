@@ -23,6 +23,7 @@ import AjouterAdmin from "./pages/AjouterAdmin/AjouterAdmin.js";
 //------------------Pages_Fin------------------
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ModifierProduit from "./pages/ModifierProduit/ModifierProduit.js";
+import Panier from "./pages/Panier/Panier.js";
 function App() {
   const state = localStorage.getItem("state");
   const role = localStorage.getItem("roles");
@@ -110,6 +111,7 @@ function App() {
             exact
             component={GStock}
           ></Route>
+          <Route path="/Panier" exact component={Panier}></Route>
         </Switch>
       </WelcomeHero>
     </Router>
