@@ -10,6 +10,7 @@ import {
   Input,
   ButtonR,
 } from "./CatalogueElements.js";
+import { Link } from "react-router-dom";
 export const Catalogue = () => {
   const [Products, setProducts] = useState([]);
   const [input, setInput] = useState("");
@@ -85,37 +86,44 @@ export const Catalogue = () => {
                 return product;
               }
             }).map((product, key) => {
-              return (
-                <div class="el-wrapper" key={key}>
-                  <div class="box-up">
-                    <img className="img" src={product.imageurl} alt="" />
-                    <div class="img-info">
-                      <div class="info-inner">
-                        <span class="p-name">{product.nom}</span>
-                        <span class="p-company">{product.type}</span>
+              if (product.archived === false)
+                return (
+                  <div class="el-wrapper" key={key}>
+                    <div class="box-up">
+                      <img className="img" src={product.imageurl} alt="" />
+                      <div class="img-info">
+                        <div class="info-inner">
+                          <span class="p-name">{product.nom}</span>
+                          <span class="p-company">{product.type}</span>
+                        </div>
+                        <div class="a-size">
+                          <span class="size" maxlength="10">
+                            {product.description}
+                          </span>
+                        </div>
                       </div>
-                      <div class="a-size">
-                        <span class="size" maxlength="10">
-                          Desciption :{product.description}
+                    </div>
+
+                    <div class="box-down">
+                      <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                      </div>
+
+                      <Link
+                        class="cart"
+                        to={{
+                          pathname: `./Catalogue/${product.id}`,
+                          param1: product.id,
+                        }}
+                      >
+                        <span class="price">{product.prix}$</span>
+                        <span class="add-to-cart">
+                          <span class="txt">Accéder au produit</span>
                         </span>
-                      </div>
+                      </Link>
                     </div>
                   </div>
-
-                  <div class="box-down">
-                    <div class="h-bg">
-                      <div class="h-bg-inner"></div>
-                    </div>
-
-                    <a class="cart" href="#">
-                      <span class="price">{product.prix}$</span>
-                      <span class="add-to-cart">
-                        <span class="txt">Ajouter au panier</span>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              );
+                );
             })}
           </StyledFormContainer>
         </CatalogueWrapper>

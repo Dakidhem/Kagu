@@ -119,6 +119,7 @@ export const StyledFormContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  max-height: 80%;
   @media screen and (max-width: 991px) {
     display: flex;
     justify-content: center;

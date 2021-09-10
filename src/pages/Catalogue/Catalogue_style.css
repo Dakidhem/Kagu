@@ -45,7 +45,7 @@
 }
 
 .el-wrapper:hover .info-inner {
-  bottom: 77.5px;
+  display: none;
 }
 
 .el-wrapper:hover .a-size {

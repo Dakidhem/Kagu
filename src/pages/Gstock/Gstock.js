@@ -13,11 +13,14 @@ import {
   Form,
   ButtonR,
   Input,
+  ButtonContainer,
+  ButtonDiv,
 } from "./GstockElements.js";
 import { VscCheck, VscClose } from "react-icons/vsc";
-import { MdDelete, MdModeEdit } from "react-icons/md";
-import { BiSearch } from "react-icons/bi";
+import { MdModeEdit } from "react-icons/md";
+import { BiSearch, BiArchiveIn } from "react-icons/bi";
 import { RiAddCircleLine } from "react-icons/ri";
+import { GiArchiveResearch } from "react-icons/gi";
 const Gstock = () => {
   const [Products, setProducts] = useState([]);
   let Compteur = 0;
@@ -49,15 +52,18 @@ const Gstock = () => {
       return <VscCheck color="green" />;
     } else return <VscClose color="red" />;
   };
-  const DeleteHandler = (id) => {
+  const archiveHandler = (id) => {
     axios
-      .delete(
-        `https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`
+      .put(
+        `https://whispering-bastion-00988.herokuapp.com/api/produits/${id}`,
+        { archived: true }
       )
       .then((response) => {
         console.log(response.data);
       })
-      .catch();
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const DisplayCompteur = () => {
     Compteur++;
@@ -67,10 +73,20 @@ const Gstock = () => {
     <div>
       <Wrapper>
         <GStockContainer>
-          <BtnAjouterP to="/GestionProduit/AjouterProduit">
-            <RiAddCircleLine size="48" />
-          </BtnAjouterP>
-          <h3>Ajouter un produit</h3>
+          <ButtonContainer>
+            <ButtonDiv>
+              <BtnAjouterP to="/GestionProduit/AjouterProduit">
+                <RiAddCircleLine size="48" />
+              </BtnAjouterP>
+              <h3>Ajouter un produit</h3>
+            </ButtonDiv>
+            <ButtonDiv>
+              <BtnAjouterP to="/GestionProduit/ArchiveProduit">
+                <GiArchiveResearch size="48" />
+              </BtnAjouterP>
+              <h3>Listes des produits archivés</h3>
+            </ButtonDiv>
+          </ButtonContainer>
           <Form
             barOpened={barOpened}
             onClick={() => {
@@ -101,7 +117,7 @@ const Gstock = () => {
               ref={inputFocus}
               value={input}
               barOpened={barOpened}
-              placeholder="Rechercher un produit..."
+              placeholder="Rechercher un produit par son nom..."
             />
           </Form>
           <GStockTable>
@@ -113,7 +129,7 @@ const Gstock = () => {
               <TableTh>Quantité</TableTh>
               <TableTh>État</TableTh>
               <TableTh>Modifier</TableTh>
-              <TableTh>Supprimer</TableTh>
+              <TableTh>Archiver</TableTh>
             </tr>
             {Products.filter((product) => {
               if (input === "") {
@@ -124,48 +140,49 @@ const Gstock = () => {
                 return product;
               }
             }).map((product, key) => {
-              return (
-                <tr id={product.id} key={key}>
-                  <TableTd>{DisplayCompteur()}</TableTd>
-                  <TableTd>{product.nom}</TableTd>
-                  <TableTd>
-                    <ProductImg src={product.imageurl} />
-                  </TableTd>
+              if (product.archived === false)
+                return (
+                  <tr id={product.id} key={key}>
+                    <TableTd>{DisplayCompteur()}</TableTd>
+                    <TableTd>{product.nom}</TableTd>
+                    <TableTd>
+                      <ProductImg src={product.imageurl} />
+                    </TableTd>
 
-                  <TableTd>{product.prix}</TableTd>
+                    <TableTd>{product.prix}</TableTd>
 
-                  <TableTd>{product.quantite}</TableTd>
-                  <TableTd>{HandleEtat(product.quantite)}</TableTd>
-                  <TableTd>
-                    <TableLink
-                      to={{
-                        pathname: `/AdminDashboard/GestionProduit/ModifierProduit/${product.id}`,
-                        id: product.id,
-                      }}
-                    >
-                      <MdModeEdit color="green" size="24" />
-                    </TableLink>
-                  </TableTd>
-                  <TableTd>
-                    <TableButton
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            "Voulez-vous vraiment supprimer ce produit?"
-                          )
-                        ) {
-                          DeleteHandler(product.id);
-                          setTimeout(() => {
-                            alert("Produit supprimé avec succès !");
-                          }, 1500);
-                        }
-                      }}
-                    >
-                      <MdDelete color="red" size="24" />
-                    </TableButton>
-                  </TableTd>
-                </tr>
-              );
+                    <TableTd>{product.quantite}</TableTd>
+                    <TableTd>{HandleEtat(product.quantite)}</TableTd>
+                    <TableTd>
+                      <TableLink
+                        to={{
+                          pathname: `/AdminDashboard/GestionProduit/ModifierProduit/${product.id}`,
+                          id: product.id,
+                        }}
+                      >
+                        <MdModeEdit color="green" size="24" />
+                      </TableLink>
+                    </TableTd>
+                    <TableTd>
+                      <TableButton
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              "Voulez-vous vraiment archiver ce produit?"
+                            )
+                          ) {
+                            archiveHandler(product.id);
+                            setTimeout(() => {
+                              alert("Produit archivé avec succès !");
+                            }, 1500);
+                          }
+                        }}
+                      >
+                        <BiArchiveIn color="red" size="24" />
+                      </TableButton>
+                    </TableTd>
+                  </tr>
+                );
             })}
           </GStockTable>
         </GStockContainer>

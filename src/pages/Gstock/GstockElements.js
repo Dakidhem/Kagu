@@ -108,3 +108,15 @@ export const ButtonR = styled.button`
   outline: none;
   color: #848080; ;
 `;
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+`;
+export const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

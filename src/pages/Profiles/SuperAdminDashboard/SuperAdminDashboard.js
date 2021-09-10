@@ -8,8 +8,9 @@ import {
   DashboardListItem,
   Listp,
 } from "../AdminDashboard/AdminDashboardElements";
-import { BiPackage, BiUserCircle } from "react-icons/bi";
-import { FaUserFriends } from "react-icons/fa";
+import { BiPackage, BiUserCircle, BiUserPlus } from "react-icons/bi";
+import { FaUserFriends, FaTruckLoading } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export const SuperAdminDashboard = ({ authorized }) => {
   if (!authorized) {
@@ -32,8 +33,20 @@ export const SuperAdminDashboard = ({ authorized }) => {
               </Listp>
             </DashboardListItem>
             <DashboardListItem to="/SuperAdminDashboard/AjouterAdmin">
-              <FaUserFriends size="32" />
+              <BiUserPlus size="32" />
               <Listp>Ajouter Admin</Listp>
+            </DashboardListItem>
+            <DashboardListItem to="/SuperAdminDashboard/ListeAdmins">
+              <FaUserFriends size="32" />
+              <Listp>Listes des Admins </Listp>
+            </DashboardListItem>
+            <DashboardListItem to="/SuperAdminDashboard/GestionCommande">
+              <FaTruckLoading size="32" />
+              <Listp>Gestion des commandes </Listp>
+            </DashboardListItem>
+            <DashboardListItem to="/Panier">
+              <AiOutlineShoppingCart size="32" />
+              <Listp>Mon Panier</Listp>
             </DashboardListItem>
           </DashboardList>
         </Dashboard>

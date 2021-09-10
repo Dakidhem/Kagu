@@ -19,11 +19,18 @@ import MonProfile from "./pages/Profiles/MonProfile/MonProfile.js";
 import AjouterProduit from "./pages/AjouterProduit/AjouterProduit.js";
 import GStock from "./pages/Gstock/Gstock.js";
 import AjouterAdmin from "./pages/AjouterAdmin/AjouterAdmin.js";
-
+import FicheProduit from "./pages/FicheProduit/FicheProduit.js";
+import Order from "./pages/Order/Order.js";
+import CommandeSucces from "./pages/CommandeSucces/CommandeSucces.js";
+import ListeAdmins from "./pages/ListeAdmins/ListeAdmins.js";
+import GOrder from "./pages/GOrder/GOrder.js";
+import Commande from "./pages/Commande/Commande.js";
+import ArchiveProduit from "./pages/ArchiveProduit/ArchiveProduit.js";
 //------------------Pages_Fin------------------
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ModifierProduit from "./pages/ModifierProduit/ModifierProduit.js";
 import Panier from "./pages/Panier/Panier.js";
+
 function App() {
   const state = localStorage.getItem("state");
   const role = localStorage.getItem("roles");
@@ -92,6 +99,11 @@ function App() {
             component={GStock}
           ></Route>
           <Route
+            path="/AdminDashboard/GestionCommande"
+            exact
+            component={GOrder}
+          ></Route>
+          <Route
             path="/GestionProduit/AjouterProduit"
             exact
             component={AjouterProduit}
@@ -111,7 +123,35 @@ function App() {
             exact
             component={GStock}
           ></Route>
+          <Route
+            path="/GestionProduit/ArchiveProduit"
+            exact
+            component={ArchiveProduit}
+          ></Route>
+          <Route
+            path="/SuperAdminDashboard/ListeAdmins"
+            exact
+            component={ListeAdmins}
+          ></Route>
+          <Route
+            path="/SuperAdminDashboard/GestionCommande"
+            exact
+            component={GOrder}
+          ></Route>
+          <Route
+            path="/GestionCommande/Commande/:id"
+            exact
+            component={Commande}
+          ></Route>
           <Route path="/Panier" exact component={Panier}></Route>
+          <Route
+            name="ficheproduit"
+            exact
+            path="/Catalogue/:id"
+            component={FicheProduit}
+          />
+          <Route path="/Commander" exact component={Order} />
+          <Route path="/CommandeSucces" exact component={CommandeSucces} />
         </Switch>
       </WelcomeHero>
     </Router>

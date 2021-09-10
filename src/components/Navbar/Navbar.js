@@ -126,11 +126,7 @@ export const Navbar = ({ setAuthorized }) => {
               <BiUser size="30" />
             </NavIconLink>
           </NavItem>
-          <NavItem>
-            <NavIconLink>
-              <AiOutlineHeart size="30" />
-            </NavIconLink>
-          </NavItem>
+
           <NavItem>
             <NavIconLink to="/Panier">
               <AiOutlineShoppingCart size="30" />

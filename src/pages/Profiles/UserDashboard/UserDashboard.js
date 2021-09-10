@@ -7,8 +7,8 @@ import {
   DashboardListItem,
   Listp,
 } from "../AdminDashboard/AdminDashboardElements.js";
-import { BiPackage, BiUserCircle } from "react-icons/bi";
-import { FaUserFriends } from "react-icons/fa";
+import { BiUserCircle } from "react-icons/bi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 export const UserDashboard = ({ authorized }) => {
   if (!authorized) {
     return <Redirect to="/LogIn" />;
@@ -21,6 +21,10 @@ export const UserDashboard = ({ authorized }) => {
             <DashboardListItem to="/SuperAdminDashboard/MonProfile">
               <BiUserCircle size="32" />
               <Listp>Mon Profil </Listp>
+            </DashboardListItem>
+            <DashboardListItem to="/Panier">
+              <AiOutlineShoppingCart size="32" />
+              <Listp>Mon Panier</Listp>
             </DashboardListItem>
           </DashboardList>
         </Dashboard>
