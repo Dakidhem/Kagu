@@ -34,8 +34,14 @@ import Panier from "./pages/Panier/Panier.js";
 import Parametre from "./pages/Parametre/Parametre.js";
 
 function App() {
-  const state = localStorage.getItem("state");
-  const role = localStorage.getItem("roles");
+  let state = "";
+  if (sessionStorage.getItem("state")) {
+    state = sessionStorage.getItem("state");
+  } else state = localStorage.getItem("state");
+  let role = "";
+  if (sessionStorage.getItem("roles")) {
+    role = sessionStorage.getItem("roles");
+  } else role = localStorage.getItem("roles");
   const [authorized, setAuthorized] = useState(state ? true : false);
   const [Role, setRole] = useState(role);
 

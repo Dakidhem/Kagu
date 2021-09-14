@@ -25,8 +25,17 @@ export const Parametre = ({ authorized, setAuthorized }) => {
     localStorage.removeItem("email");
     localStorage.removeItem("role");
     localStorage.removeItem("numtel");
+    sessionStorage.removeItem("state");
+    sessionStorage.removeItem("nom");
+    sessionStorage.removeItem("prenom");
+    sessionStorage.removeItem("id");
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("roles");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("numtel");
     setAuthorized(false);
-    alert("vous avez été déconnecté avec succès");
+    setTimeout(alert("vous avez été déconnecté avec succès"), 1500);
   };
   return (
     <div>

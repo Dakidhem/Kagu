@@ -72,9 +72,15 @@ export const LogIn = ({ authorized, setAuthorized, setRole }) => {
             localStorage.setItem(key, response.data[key]);
           }
         }
-
+        sessionStorage.setItem("state", JSON.stringify(response.data));
+        for (let key in response.data) {
+          sessionStorage.setItem(key, response.data[key]);
+        }
         setTimeout(() => {
-          const role = localStorage.getItem("roles");
+          let role = "";
+          if (sessionStorage.getItem("roles")) {
+            role = sessionStorage.getItem("roles");
+          } else role = localStorage.getItem("roles");
           setAuthorized(true);
           if (role === "ROLE_USER") {
             setRole("ROLE_USER");
