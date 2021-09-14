@@ -20,10 +20,6 @@ export const Catalogue = (props) => {
   const inputFocus = useRef();
 
   useEffect(() => {
-    if (props.location.nomProduit !== undefined) {
-      setInput(props.location.nomProduit);
-      setBarOpened(true);
-    }
     axios
       .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((Response) => {
@@ -33,6 +29,12 @@ export const Catalogue = (props) => {
         console.log(error);
       });
   }, [Products]);
+  useEffect(() => {
+    if (props.location.nomProduit !== undefined) {
+      setInput(props.location.nomProduit);
+      setBarOpened(true);
+    }
+  }, []);
 
   const onFormSubmit = (e) => {
     // When form submited, clear input, close the searchbar and do something with input
@@ -91,6 +93,7 @@ export const Catalogue = (props) => {
                 return product;
               }
             }).map((product, key) => {
+              if (Products === []) return <h1>Aucun produit n'a été trouvé</h1>;
               if (product.archived === false)
                 return (
                   <div class="el-wrapper" key={key}>
