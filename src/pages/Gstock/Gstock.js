@@ -60,6 +60,9 @@ const Gstock = () => {
       )
       .then((response) => {
         console.log(response.data);
+        setTimeout(() => {
+          alert("Produit archivé avec succès !");
+        }, 1500);
       })
       .catch((err) => {
         console.log(err);
@@ -172,9 +175,6 @@ const Gstock = () => {
                             )
                           ) {
                             archiveHandler(product.id);
-                            setTimeout(() => {
-                              alert("Produit archivé avec succès !");
-                            }, 1500);
                           }
                         }}
                       >

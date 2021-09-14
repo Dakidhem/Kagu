@@ -26,6 +26,7 @@ export const Parametre = ({ authorized, setAuthorized }) => {
     localStorage.removeItem("role");
     localStorage.removeItem("numtel");
     setAuthorized(false);
+    alert("vous avez été déconnecté avec succès");
   };
   return (
     <div>

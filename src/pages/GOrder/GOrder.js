@@ -40,6 +40,9 @@ const GOrder = () => {
     axios
       .delete(`https://managecartandorders.herokuapp.com/api/order/${id}`)
       .then((response) => {
+        setTimeout(() => {
+          alert("Commande supprimé avec succès !");
+        }, 1500);
         console.log(response.data);
       })
       .catch((err) => {
@@ -105,9 +108,6 @@ const GOrder = () => {
                           )
                         ) {
                           DeleteHandler(commande._id);
-                          setTimeout(() => {
-                            alert("Commande supprimé avec succès !");
-                          }, 1500);
                         }
                       }}
                     >
