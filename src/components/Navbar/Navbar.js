@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
   Nav,
@@ -16,10 +17,9 @@ import {
 } from "./NavbarElement";
 import { BiUser, BiSearch } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import Logo from "../../assets/Images/Logo.png";
-import { useHistory } from "react-router";
-export const Navbar = ({ setAuthorized }) => {
+export const Navbar = ({}) => {
   const [Products, setProducts] = useState([]);
   const [UpdatedProducts, setUpdatedProducts] = useState([]);
   const [input, setInput] = useState("");
@@ -38,24 +38,16 @@ export const Navbar = ({ setAuthorized }) => {
   const onFormSubmit = (e) => {
     // When form submited, clear input, close the searchbar and do something with input
     e.preventDefault();
+
+    history.push({
+      pathname: "/Catalogue",
+      nomProduit: input,
+    });
     setInput("");
-    setBarOpened(true);
     // After form submit, do what you want with the input value
     console.log(`Form was submited with input: ${input}`);
   };
-  const handleDisconnect = () => {
-    localStorage.removeItem("state");
-    localStorage.removeItem("nom");
-    localStorage.removeItem("prenom");
-    localStorage.removeItem("id");
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("roles");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
-    localStorage.removeItem("numtel");
-    setAuthorized(false);
-    history.push("/hello");
-  };
+
   const HandleSearch = (e) => {
     setInput(e.target.value);
     if (e.target.value === "") {
@@ -86,7 +78,7 @@ export const Navbar = ({ setAuthorized }) => {
             <NavLinks to="/Catalogue">Produits</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/">Contactez-nous</NavLinks>
+            <NavLinks to="/Contactez-nous">Contactez-nous</NavLinks>
           </NavItem>
         </NavMenu>
         <Form
@@ -121,19 +113,19 @@ export const Navbar = ({ setAuthorized }) => {
           />
         </Form>
         <NavIcons>
-          <NavItem>
+          <NavItem title="Mon Profile">
             <NavIconLink to="/VerifyRole">
               <BiUser size="30" />
             </NavIconLink>
           </NavItem>
 
-          <NavItem>
+          <NavItem title="Mon Panier">
             <NavIconLink to="/Panier">
               <AiOutlineShoppingCart size="30" />
             </NavIconLink>
           </NavItem>
-          <NavItem>
-            <NavIconLink to="/" onClick={handleDisconnect}>
+          <NavItem title="Paramètres">
+            <NavIconLink to="/Parametre">
               <FiSettings size="30" />
             </NavIconLink>
           </NavItem>

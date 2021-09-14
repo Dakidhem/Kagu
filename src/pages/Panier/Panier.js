@@ -120,16 +120,18 @@ const Panier = () => {
       });
   };
   const ModifierQuantite = (product_id, qty) => {
+    let quant = prompt("Entrez la quantité à réduire");
     const email = localStorage.getItem("email");
     axios
       .post(`https://managecartandorders.herokuapp.com/api/cart/subtract`, {
         email: email,
         product_id: product_id,
-        qty: 1,
+        qty: quant,
       })
       .then((reponse) => {
         setReload(!reload);
         console.log(reponse);
+
         setTimeout(alert("Quantité réduite avec succès"), 3000);
       })
       .catch((err) => {

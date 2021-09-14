@@ -9,9 +9,10 @@ import {
   Form,
   Input,
   ButtonR,
+  StyledTitle,
 } from "./CatalogueElements.js";
 import { Link } from "react-router-dom";
-export const Catalogue = () => {
+export const Catalogue = (props) => {
   const [Products, setProducts] = useState([]);
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
@@ -19,6 +20,10 @@ export const Catalogue = () => {
   const inputFocus = useRef();
 
   useEffect(() => {
+    if (props.location.nomProduit !== undefined) {
+      setInput(props.location.nomProduit);
+      setBarOpened(true);
+    }
     axios
       .get("https://whispering-bastion-00988.herokuapp.com/api/produits")
       .then((Response) => {
@@ -42,7 +47,7 @@ export const Catalogue = () => {
     <div>
       <StyledFormWrapper>
         <CatalogueWrapper>
-          <h1>Catalogue</h1>
+          <StyledTitle>Nos Produits</StyledTitle>
           <Form
             barOpened={barOpened}
             onClick={() => {

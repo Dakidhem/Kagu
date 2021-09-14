@@ -12,7 +12,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaTruckLoading } from "react-icons/fa";
 
 export const AdminDashboard = ({ authorized }) => {
-  if (!authorized) {
+  if (authorized === false) {
     return <Redirect to="/LogIn" />;
   }
 

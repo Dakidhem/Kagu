@@ -18,8 +18,8 @@ export const Dashboard = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   min-height: 40vw;
   grid-template-columns: 1fr 3fr;
@@ -31,4 +31,12 @@ export const Dashboard = styled.div`
 `;
 export const Listp = styled.p`
   margin-left: 5px;
+  font-weight: 700;
+  line-height: 50px;
+`;
+export const DashboardPhoto = styled.div``;
+export const Dashboardinfo = styled.div``;
+export const StyledTitle = styled.h1`
+  color: #01789a;
+  font-weight: 900;
 `;

@@ -26,10 +26,12 @@ import ListeAdmins from "./pages/ListeAdmins/ListeAdmins.js";
 import GOrder from "./pages/GOrder/GOrder.js";
 import Commande from "./pages/Commande/Commande.js";
 import ArchiveProduit from "./pages/ArchiveProduit/ArchiveProduit.js";
+import ContactUs from "./pages/ContactUs/ContactUs.js";
 //------------------Pages_Fin------------------
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ModifierProduit from "./pages/ModifierProduit/ModifierProduit.js";
 import Panier from "./pages/Panier/Panier.js";
+import Parametre from "./pages/Parametre/Parametre.js";
 
 function App() {
   const state = localStorage.getItem("state");
@@ -152,6 +154,17 @@ function App() {
           />
           <Route path="/Commander" exact component={Order} />
           <Route path="/CommandeSucces" exact component={CommandeSucces} />
+          <Route path="/Contactez-nous" exact component={ContactUs} />
+          <Route
+            path="/Parametre"
+            exact
+            component={() => (
+              <Parametre
+                setAuthorized={setAuthorized}
+                authorized={authorized}
+              />
+            )}
+          />
         </Switch>
       </WelcomeHero>
     </Router>

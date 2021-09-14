@@ -31,7 +31,14 @@ export const HeroSlides = () => {
           <ContentItem>
             <PItem>Des Chaises</PItem>
             <br />
-            <ButtonItem>Achetez !</ButtonItem>
+            <ButtonItem
+              to={{
+                pathname: "/Catalogue",
+                nomProduit: "chaise",
+              }}
+            >
+              Achetez !
+            </ButtonItem>
           </ContentItem>
           <ImgItem src={meuble1} />
         </Item>
@@ -42,7 +49,14 @@ export const HeroSlides = () => {
               <br /> De Nuits
             </PItem>
             <br />
-            <ButtonItem>Achetez !</ButtonItem>
+            <ButtonItem
+              to={{
+                pathname: "/Catalogue",
+                nomProduit: "table de nuit",
+              }}
+            >
+              Achetez !
+            </ButtonItem>
           </ContentItem>
           <ImgItem src={meuble2} />
         </Item>
@@ -50,7 +64,14 @@ export const HeroSlides = () => {
           <ContentItem>
             <PItem>Des Armoires</PItem>
             <br />
-            <ButtonItem>Achetez !</ButtonItem>
+            <ButtonItem
+              to={{
+                pathname: "/Catalogue",
+                nomProduit: "armoire",
+              }}
+            >
+              Achetez !
+            </ButtonItem>
           </ContentItem>
           <ImgItem src={meuble3} />
         </Item>
@@ -58,7 +79,14 @@ export const HeroSlides = () => {
           <ContentItem>
             <PItem>Des Lits</PItem>
             <br />
-            <ButtonItem>Achetez !</ButtonItem>
+            <ButtonItem
+              to={{
+                pathname: "/Catalogue",
+                nomProduit: "lit",
+              }}
+            >
+              Achetez !
+            </ButtonItem>
           </ContentItem>
           <ImgItem src={meuble4} />
         </Item>

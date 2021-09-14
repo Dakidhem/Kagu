@@ -13,7 +13,7 @@ import { FaUserFriends, FaTruckLoading } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export const SuperAdminDashboard = ({ authorized }) => {
-  if (!authorized) {
+  if (authorized === false) {
     return <Redirect to="/LogIn" />;
   }
   return (

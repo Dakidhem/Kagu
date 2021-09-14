@@ -43,7 +43,7 @@ function FicheProduit(props) {
   };
   const addCart = () => {
     if (localStorage.getItem("email") === null) {
-      alert("Vous devez être connecté pour  ajouter des produits au panier !");
+      alert("Vous devez être connecté pour ajouter des produits au panier !");
     } else {
       axios
         .post(`https://managecartandorders.herokuapp.com/api/cart/addCart`, {
@@ -52,7 +52,12 @@ function FicheProduit(props) {
           qty: Qty,
         })
         .then((response) => {
+          console.log(response.data);
           setTimeout(alert("Produit ajouté au panier avec succès"), 3000);
+        })
+        .catch((err) => {
+          console.log("hello world !");
+          console.log(err);
         });
     }
   };

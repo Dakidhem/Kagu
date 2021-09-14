@@ -10,7 +10,7 @@ import {
 import { BiUserCircle } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 export const UserDashboard = ({ authorized }) => {
-  if (!authorized) {
+  if (authorized === false) {
     return <Redirect to="/LogIn" />;
   }
   return (

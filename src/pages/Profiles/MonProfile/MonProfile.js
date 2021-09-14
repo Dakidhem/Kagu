@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { DashboardContainer, Dashboard, Listp } from "./MonProfileElements.js";
+import {
+  DashboardContainer,
+  Dashboard,
+  Listp,
+  DashboardPhoto,
+  Dashboardinfo,
+  StyledTitle,
+} from "./MonProfileElements.js";
+import ImageProfile from "../../../assets/Images/images.png";
 export const MonProfile = () => {
   const [state, setState] = useState({
     nom: localStorage.getItem("nom"),
@@ -12,12 +20,17 @@ export const MonProfile = () => {
     <div>
       <DashboardContainer>
         <Dashboard>
-          <h1>Mon Profile</h1>
-          <Listp>Nom : {state.nom}</Listp>
-          <Listp>Prénom : {state.prenom}</Listp>
-          <Listp>Email : {state.email}</Listp>
-          <Listp>Numéro de téléphone : {state.numtel}</Listp>
-          <Listp>Role : {state.role}</Listp>
+          <DashboardPhoto>
+            <img src={ImageProfile}></img>
+          </DashboardPhoto>
+          <Dashboardinfo>
+            <StyledTitle>Mon Profile</StyledTitle>
+            <Listp>Nom : {state.nom}</Listp>
+            <Listp>Prénom : {state.prenom}</Listp>
+            <Listp>Email : {state.email}</Listp>
+            <Listp>Numéro de téléphone : {state.numtel}</Listp>
+            <Listp>Role : {state.role}</Listp>
+          </Dashboardinfo>
         </Dashboard>
       </DashboardContainer>
     </div>

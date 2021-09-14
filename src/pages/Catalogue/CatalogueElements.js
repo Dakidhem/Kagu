@@ -104,3 +104,6 @@ export const ButtonR = styled.button`
   outline: none;
   color: #848080; ;
 `;
+export const StyledTitle = styled.h1`
+  color: #01789a;
+`;
