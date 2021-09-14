@@ -29,12 +29,12 @@ export const HeroSlides = () => {
       >
         <Item>
           <ContentItem>
-            <PItem>Des Chaises</PItem>
+            <PItem>Des Fauteuils</PItem>
             <br />
             <ButtonItem
               to={{
                 pathname: "/Catalogue",
-                nomProduit: "chaise",
+                nomProduit: "fauteuil",
               }}
             >
               Achetez !

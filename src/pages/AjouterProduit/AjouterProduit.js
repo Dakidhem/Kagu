@@ -43,10 +43,41 @@ const AjouterProduit = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (state.nom === "") {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir un nom pour le produit");
+      return;
+    }
+    if (state.type === "") {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir un type pour le produit");
+      return;
+    }
+    if (state.prix === "") {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir un prix pour le produit");
+      return;
+    }
     if (state.quantite < 1) {
       setError("");
       setNotiv("");
       setNotir("Vous devez saisir une quantité supérieure à 0");
+      return;
+    }
+    if (state.description === "") {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir une description pour le produit");
+      return;
+    }
+    if (state.imageurl === "") {
+      setError("");
+      setNotiv("");
+      setNotir("Vous devez saisir une url pour la photo du produit");
       return;
     }
 
