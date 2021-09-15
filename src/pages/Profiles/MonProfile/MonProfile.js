@@ -9,13 +9,26 @@ import {
 } from "./MonProfileElements.js";
 import ImageProfile from "../../../assets/Images/images.png";
 export const MonProfile = () => {
-  const [state, setState] = useState({
-    nom: localStorage.getItem("nom"),
-    prenom: localStorage.getItem("prenom"),
-    email: localStorage.getItem("email"),
-    numtel: localStorage.getItem("numtel"),
-    role: localStorage.getItem("roles"),
-  });
+  let data;
+  if (sessionStorage.getItem("state")) {
+    data = {
+      nom: sessionStorage.getItem("nom"),
+      prenom: sessionStorage.getItem("prenom"),
+      email: sessionStorage.getItem("email"),
+      numtel: sessionStorage.getItem("numtel"),
+      role: sessionStorage.getItem("roles"),
+    };
+  } else {
+    data = {
+      nom: localStorage.getItem("nom"),
+      prenom: localStorage.getItem("prenom"),
+      email: localStorage.getItem("email"),
+      numtel: localStorage.getItem("numtel"),
+      role: localStorage.getItem("roles"),
+    };
+  }
+  const [state, setState] = useState(data);
+
   return (
     <div>
       <DashboardContainer>
